@@ -8,11 +8,12 @@
 
 import UIKit // This file will reference iOS User interface toolkit
 
-class ViewController: UIViewController { // Create new screen of data called viewController based on UIViewController
+class ViewController: UITableViewController { // Create new screen of data called viewController based on UITableViewController
 
     var pictures = [String]() // [] means array of Strings, () means create one NOW. (function?)
     
-    override func viewDidLoad() { // override = change default behavior
+    override func viewDidLoad() // override = change default behavior
+    {
         super.viewDidLoad() // super =  tell Apple's UIViewcontroller to run its own code before I run mine.
         
         let fm = FileManager.default
@@ -24,13 +25,23 @@ class ViewController: UIViewController { // Create new screen of data called vie
             if item.hasPrefix("nssl")
             {
                 pictures.append(item)
-        
             }
         }
         print(pictures)
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) // Recycle cells 
+        cell.textLabel?.text = pictures[indexPath.row]
+        return cell;
+    }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pictures.count // -> Int means this method will return an int.
+        // The _ is here as a placeholder for the first parameter passed.
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
