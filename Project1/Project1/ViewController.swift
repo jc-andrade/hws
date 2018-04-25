@@ -32,7 +32,7 @@ class ViewController: UITableViewController { // Create new screen of data calle
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) // Recycle cells 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) // Recycle cells
         cell.textLabel?.text = pictures[indexPath.row]
         return cell;
     }
@@ -40,6 +40,19 @@ class ViewController: UITableViewController { // Create new screen of data calle
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count // -> Int means this method will return an int.
         // The _ is here as a placeholder for the first parameter passed.
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 1: try loading 'Detail' view controller and type cast to DetailViewController
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            // Success! Set its selectedImage property
+            vc.selectedImage = pictures[indexPath.row]
+            
+            // 3: push onto Nav Controller
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
     }
     
     override func didReceiveMemoryWarning()
