@@ -6,7 +6,7 @@
 > hackingwithswift.com which is helping me get more familiar with 
 > the Swift programming language for iOS development.
 
-License
+### License
 ----
 
 MIT
