@@ -20,5 +20,6 @@ MIT
 ### Where?
 ----
 * [hws] - Hacking With Swift!
+----
 
 [hws]: <http://www.hackingwithswift.com>
