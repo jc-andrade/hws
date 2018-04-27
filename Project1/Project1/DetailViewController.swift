@@ -17,17 +17,35 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        title = selectedImage
+        
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad)
         }
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated) // "tell my parent data type that these methods were called"
+        navigationController?.hidesBarsOnTap = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnTap = false
+    }
  
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        return navigationController?.hidesBarsOnTap ?? false
+        // ?? is 'nil coalescing operator
+        // "if nav controller doesn't exist, send false rather than trying to read hidesBarOnTap properpty
     }
     
 

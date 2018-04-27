@@ -16,6 +16,12 @@ class ViewController: UITableViewController { // Create new screen of data calle
     {
         super.viewDidLoad() // super =  tell Apple's UIViewcontroller to run its own code before I run mine.
         
+        title = "Storm Viewer"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true // Large titles
+        navigationItem.largeTitleDisplayMode = .never // This allows Storm Viewer to be big, but
+                                                    // detail screen to look normal. 
+        
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
